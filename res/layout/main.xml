@@ -18,4 +18,9 @@
         <TextView android:layout_width="wrap_content" android:id="@+id/TextViewQ" android:layout_height="wrap_content" android:textAppearance="?android:attr/textAppearanceLarge" android:text="TextView"></TextView>
         <TextView android:layout_width="wrap_content" android:id="@+id/TextViewR" android:layout_height="wrap_content" android:textAppearance="?android:attr/textAppearanceLarge" android:text="TextView"></TextView>
     </LinearLayout>
+    <Button
+    android:id="@+id/button1"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:text="Graphics Mode" android:onClick="clicked"/>
 </LinearLayout>

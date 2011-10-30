@@ -2,12 +2,16 @@ package test.sensors;
 
 import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.hardware.Sensor;
 import android.hardware.SensorEvent;
 import android.hardware.SensorEventListener;
 import android.hardware.SensorManager;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuItem;
+import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -87,6 +91,8 @@ public class SensorCheckActivity extends Activity {
         Log.e("Application","Sensor Activity Created");
     }
     
+    
+    
     private void setAccelerometerListener(){
     	// setup & implement accelerometer listener
     	aListener = new SensorEventListener(){
@@ -131,5 +137,18 @@ public class SensorCheckActivity extends Activity {
     	manager.registerListener(mListener, compass, SensorManager.SENSOR_DELAY_GAME);
     }
     
+    /** Controlling the view */
+    public void clicked(View view){
+    	
+    	Toast.makeText(this, "Changing to Graphics ", Toast.LENGTH_SHORT).show();
+       	Intent intent = new Intent();
+		intent.setClass(this, MapDraw.class);
+		
+		startActivity(intent);
+		Log.e("Intent","Switched");
+
+    }
+    
+   
     
 }

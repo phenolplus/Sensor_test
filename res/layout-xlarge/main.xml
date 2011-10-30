@@ -21,4 +21,11 @@
     <TextView android:layout_width="wrap_content" android:id="@+id/textViewQ" android:layout_height="wrap_content" android:textAppearance="?android:attr/textAppearanceLarge" android:text="TextView" android:layout_weight="1"></TextView>
     <TextView android:layout_width="wrap_content" android:id="@+id/textViewR" android:layout_height="wrap_content" android:textAppearance="?android:attr/textAppearanceLarge" android:text="TextView" android:layout_weight="1"></TextView>
 </LinearLayout>
+
+<Button
+    android:id="@+id/button1"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:text="Graphics Mode"  android:onClick="clicked"/>
+
 </LinearLayout>
