@@ -40,11 +40,17 @@ public class SensorCheckActivity extends Activity {
         
         // Get sensors
         manager = (SensorManager) getSystemService(Context.SENSOR_SERVICE);
+        Container.manager = manager;
         // Get accelerometer
         sensor = manager.getDefaultSensor(Sensor.TYPE_ACCELEROMETER);
         // Get compass
         compass = manager.getDefaultSensor(Sensor.TYPE_MAGNETIC_FIELD);
     	
+    }
+    
+    @Override
+    public void onResume(){
+    	super.onResume();
         // setup accelerometer       
         if(sensor == null) {
         	// not found
@@ -91,6 +97,21 @@ public class SensorCheckActivity extends Activity {
         Log.e("Application","Sensor Activity Created");
     }
     
+    @Override
+    public void onDestroy(){
+    	super.onDestroy();
+    	
+    	if(sensor != null){
+    		manager.unregisterListener(aListener);
+    	}
+    	
+    	if(compass != null){
+    		manager.unregisterListener(mListener);
+    	}
+    	
+    	Log.e("Application","Destroied");
+    }
+    
     
     
     private void setAccelerometerListener(){
@@ -106,6 +127,10 @@ public class SensorCheckActivity extends Activity {
 			@Override
 			public void onSensorChanged(SensorEvent event) {
 				// TODO Auto-generated method stub
+				Container.MyAccelerometer.x = event.values[0];
+				Container.MyAccelerometer.y = event.values[1];
+				Container.MyAccelerometer.z = event.values[2];
+				
 				readX.setText(String.format("read X = %+.3f m/s^2",event.values[0]));
 				readY.setText(String.format("read Y = %+.3f m/s^2",event.values[1]));
 				readZ.setText(String.format("read Z = %+.3f m/s^2",event.values[2]));
@@ -128,12 +153,17 @@ public class SensorCheckActivity extends Activity {
 			@Override
 			public void onSensorChanged(SensorEvent event) {
 				// TODO Auto-generated method stub
+				Container.MyCompass.x = event.values[0];
+				Container.MyCompass.y = event.values[1];
+				Container.MyCompass.z = event.values[2];
+				
 				compX.setText(String.format("read X = %+.3f uT",event.values[0]));
 				compY.setText(String.format("read Y = %+.3f uT",event.values[1]));
 				compZ.setText(String.format("read Z = %+.3f uT",event.values[2]));
 			}
     		
     	};
+    	
     	manager.registerListener(mListener, compass, SensorManager.SENSOR_DELAY_GAME);
     }
     
